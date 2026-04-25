@@ -1,0 +1,24 @@
+$schema: 'https://moonrepo.dev/schemas/tasks.json'
+
+# Inherited by every project. Individual projects override `command` per task.
+tasks:
+  ci:
+    deps:
+      - '~:check'
+      - '~:test'
+    inputs: []
+
+  check:
+    command: 'noop'
+    options:
+      runInCI: true
+
+  test:
+    command: 'noop'
+    options:
+      runInCI: true
+
+  release:
+    command: 'noop'
+    options:
+      runInCI: false
