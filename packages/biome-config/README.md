@@ -2,7 +2,7 @@
 
 Shared Biome configurations for Fellwork projects.
 
-> **Status:** v0.1.1 — published to the npm public registry.
+> **Status:** published to the [npm public registry](https://www.npmjs.com/package/@fellwork/biome-config).
 
 ## Install
 
