@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  packages: write
 
 jobs:
   release:
@@ -64,7 +63,7 @@ jobs:
         working-directory: packages/biome-config
         env:
           SEMVER_LEVEL: ${{ steps.bump.outputs.level }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         # Call the release script directly. Going through `moon run :release`
         # fails because moon 2.x excludes runInCI:false tasks from CI execution
         # even when invoked explicitly. The script itself doesn't need moon.

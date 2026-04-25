@@ -2,7 +2,7 @@
 
 Shared Biome configurations for Fellwork projects.
 
-> **Status:** v0.1.0 — initial release.
+> **Status:** v0.1.1 — published to the npm public registry.
 
 ## Install
 
