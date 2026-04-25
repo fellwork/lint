@@ -1,0 +1,6 @@
+$schema: 'https://moonrepo.dev/schemas/toolchain.json'
+
+# Tool versions are sourced from .prototools (proto-managed).
+# Moon will use the proto-installed binaries.
+bun: {}
+node: {}

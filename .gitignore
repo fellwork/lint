@@ -1,0 +1,10 @@
+.worktrees/
+node_modules/
+.moon/cache/
+.moon/docker/
+*.log
+.DS_Store
+.idea/
+.vscode/
+dist/
+build/

@@ -1,0 +1,3 @@
+lint/suspicious/noExplicitAny
+lint/suspicious/noDebugger
+lint/correctness/noUnusedVariables
