@@ -1,0 +1,22 @@
+$schema: 'https://moonrepo.dev/schemas/project.json'
+
+# Moon 2.x uses 'layer' instead of 'type' for project classification
+layer: 'library'
+language: 'typescript'
+
+tasks:
+  check:
+    command: 'biome check presets'
+    inputs:
+      - 'presets/**/*.json'
+
+  test:
+    command: 'bun run tests/run-fixtures.ts'
+    inputs:
+      - 'presets/**/*.json'
+      - 'tests/**'
+
+  release:
+    command: 'bun run scripts/release.ts'
+    options:
+      runInCI: false
