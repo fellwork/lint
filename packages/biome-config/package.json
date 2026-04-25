@@ -1,6 +1,6 @@
 {
   "name": "@fellwork/biome-config",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Shared Biome configurations for Fellwork projects (presets for base, lib, node, react, vue, next, nuxt).",
   "keywords": [
     "biome",
