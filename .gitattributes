@@ -1,0 +1,5 @@
+# Force LF line endings for all text files. Required because base.json's
+# formatter sets lineEnding: lf, and Git's autocrlf on Windows would
+# otherwise produce CRLF working-tree files that fail biome's formatter
+# check locally.
+* text=auto eol=lf
