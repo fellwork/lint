@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # moon needs git history to diff against main
 
       - name: Install proto + pinned tools (bun, node, moon)
         uses: moonrepo/setup-toolchain@v0
