@@ -1,7 +1,11 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": true
+  "$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   },
   "formatter": {
     "enabled": true,
@@ -43,7 +47,7 @@
         "noExplicitAny": "error",
         "noDoubleEquals": "error",
         "noDebugger": "error",
-        "noConsoleLog": "warn"
+        "noConsole": "warn"
       }
     }
   }

@@ -1,5 +1,5 @@
 export interface PublicApi {
-	readonly version: string;
+  readonly version: string
 }
 
-export const create = (version: string): PublicApi => ({ version });
+export const create = (version: string): PublicApi => ({ version })

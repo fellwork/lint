@@ -4,4 +4,4 @@ lint/suspicious/noDoubleEquals
 lint/suspicious/noDebugger
 lint/correctness/noUnusedVariables
 lint/correctness/noConstantCondition
-lint/suspicious/noConsoleLog
+lint/suspicious/noConsole
