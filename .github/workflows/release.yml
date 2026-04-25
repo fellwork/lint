@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Determine bump level from PR labels
+        id: bump
+        env:
+          LABELS: ${{ toJson(github.event.pull_request.labels.*.name) }}
+        run: |
+          level=""
+          for label in $(echo "$LABELS" | jq -r '.[]'); do
+            case "$label" in
+              semver:patch)  level="patch" ;;
+              semver:minor)  level="minor" ;;
+              semver:major)  level="major" ;;
+              semver:canary) level="canary" ;;
+            esac
+          done
+          if [ -z "$level" ]; then
+            echo "no semver:* label on merged PR; skipping release"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "level=$level" >> "$GITHUB_OUTPUT"
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.bump.outputs.skip == 'false'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git author
+        if: steps.bump.outputs.skip == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install proto + tools
+        if: steps.bump.outputs.skip == 'false'
+        uses: moonrepo/setup-toolchain@v0
+        with:
+          auto-install: true
+
+      - name: Install dependencies
+        if: steps.bump.outputs.skip == 'false'
+        run: bun install --frozen-lockfile
+
+      - name: Release
+        if: steps.bump.outputs.skip == 'false'
+        env:
+          SEMVER_LEVEL: ${{ steps.bump.outputs.level }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: moon run biome-config:release
+
+      - name: Create GitHub Release
+        if: steps.bump.outputs.skip == 'false' && steps.bump.outputs.level != 'canary'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag=$(git describe --tags --abbrev=0)
+          gh release create "$tag" --generate-notes
