@@ -13,7 +13,7 @@ Shared lint and format configuration for Fellwork projects.
 - **proto** — pinned tool versions (see `.prototools`)
 - **biome** — linter + formatter (installed via npm devDeps, not proto)
 - **bumpp** — semver bumping
-- **GitHub Packages** — private registry under the `@fellwork` scope
+- **npm public registry** — published as `@fellwork/biome-config`
 
 ## Local development
 
@@ -34,7 +34,9 @@ Releases are CI-driven. To cut a release, add **one** of these labels to your PR
 - `semver:major` — removing a rule, breaking preset reshape, or peer-dep bump
 - `semver:canary` — pre-release, publishes with `--tag canary`
 
-Merging a labeled PR triggers [`.github/workflows/release.yml`](./.github/workflows/release.yml) which bumps the version, publishes to GitHub Packages, and creates a GitHub Release with auto-generated release notes from the commit log.
+Merging a labeled PR triggers [`.github/workflows/release.yml`](./.github/workflows/release.yml) which bumps the version, publishes to the npm public registry, and creates a GitHub Release with auto-generated release notes from the commit log.
+
+> **Required repo secret:** `NPM_TOKEN` — an npm Automation token with publish rights for the `@fellwork` scope. Generate at npmjs.com → Account → Access Tokens → "Automation".
 
 PRs without a `semver:*` label merge silently with no release. Use this for docs-only or test-only changes.
 

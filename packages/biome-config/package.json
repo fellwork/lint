@@ -9,8 +9,7 @@
     "directory": "packages/biome-config"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "restricted"
+    "access": "public"
   },
   "files": ["presets", "extras"],
   "exports": {
