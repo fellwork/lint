@@ -61,10 +61,14 @@ jobs:
 
       - name: Release
         if: steps.bump.outputs.skip == 'false'
+        working-directory: packages/biome-config
         env:
           SEMVER_LEVEL: ${{ steps.bump.outputs.level }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: moon run biome-config:release
+        # Call the release script directly. Going through `moon run :release`
+        # fails because moon 2.x excludes runInCI:false tasks from CI execution
+        # even when invoked explicitly. The script itself doesn't need moon.
+        run: bun run scripts/release.ts
 
       - name: Create GitHub Release
         if: steps.bump.outputs.skip == 'false' && steps.bump.outputs.level != 'canary'
