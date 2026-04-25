@@ -6,7 +6,7 @@ language: 'typescript'
 
 tasks:
   check:
-    command: 'biome check presets'
+    command: 'bunx biome check presets'
     inputs:
       - 'presets/**/*.json'
 
