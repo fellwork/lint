@@ -18,4 +18,13 @@ In your `biome.json`:
 
 Available presets: `base`, `lib`, `node`, `react`, `vue`, `next`, `nuxt`.
 
-See [extras/GAPS.md](./extras/GAPS.md) for documented coverage gaps and mitigations.
+## Documented Gaps
+
+This package uses Biome alone — no oxlint, no eslint-plugin-vue, no @nuxt/eslint.
+See [extras/GAPS.md](./extras/GAPS.md) for what's lost vs the legacy stack and
+how to mitigate.
+
+## Recommended Scripts
+
+See [extras/package-scripts.md](./extras/package-scripts.md) for `package.json`
+script snippets, including Vue/Nuxt template type-checking via `vue-tsc`.
