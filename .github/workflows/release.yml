@@ -58,14 +58,21 @@ jobs:
         if: steps.bump.outputs.skip == 'false'
         run: bun install --frozen-lockfile
 
+      - name: Configure npm authentication
+        if: steps.bump.outputs.skip == 'false'
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # Write ~/.npmrc with the literal token. npm publish reads this
+        # automatically; using ${NPM_TOKEN} (literal) here, not interpolated
+        # by npm itself.
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+
       - name: Release
         if: steps.bump.outputs.skip == 'false'
         working-directory: packages/biome-config
         env:
           SEMVER_LEVEL: ${{ steps.bump.outputs.level }}
-          # bun publish reads NPM_CONFIG_TOKEN natively (NOT NODE_AUTH_TOKEN —
-          # that's the npm/setup-node convention bun does not honor).
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
         # Call the release script directly. Going through `moon run :release`
         # fails because moon 2.x excludes runInCI:false tasks from CI execution
         # even when invoked explicitly. The script itself doesn't need moon.

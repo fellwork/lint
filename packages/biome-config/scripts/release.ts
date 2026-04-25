@@ -24,10 +24,17 @@ function run(cmd: string, args: string[]) {
 
 // bumpp v11: --release <type> (not positional). -y skips the confirmation prompt
 // (required in CI; without it bumpp hangs on stdin). commit/tag/push default true.
+//
+// Use `npm publish` rather than `bun publish` — bun's publish auth is
+// flaky (ignores NODE_AUTH_TOKEN, ignores NPM_CONFIG_TOKEN, ignores
+// .npmrc files in CI for granular tokens, falls back to interactive
+// browser auth that times out). npm publish reads the standard
+// NODE_AUTH_TOKEN + .npmrc pattern and is battle-tested with all npm
+// token types (Classic, Automation, Granular).
 if (isCanary) {
   run('bunx', ['bumpp', '-y', '--preid', 'canary', '--release', 'prerelease'])
-  run('bun', ['publish', '--tag', 'canary'])
+  run('npm', ['publish', '--tag', 'canary', '--access', 'public'])
 } else {
   run('bunx', ['bumpp', '-y', '--release', bumpLevel])
-  run('bun', ['publish'])
+  run('npm', ['publish', '--access', 'public'])
 }
