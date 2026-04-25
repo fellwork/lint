@@ -1,8 +1,30 @@
 {
   "name": "@fellwork/biome-config",
   "version": "0.1.2",
-  "description": "Shared Biome configurations for Fellwork projects",
+  "description": "Shared Biome configurations for Fellwork projects (presets for base, lib, node, react, vue, next, nuxt).",
+  "keywords": [
+    "biome",
+    "biomejs",
+    "biome-config",
+    "shared-config",
+    "shareable-config",
+    "lint",
+    "linter",
+    "format",
+    "formatter",
+    "fellwork",
+    "react",
+    "vue",
+    "nextjs",
+    "nuxt",
+    "typescript"
+  ],
+  "homepage": "https://github.com/fellwork/lint/tree/main/packages/biome-config#readme",
+  "bugs": {
+    "url": "https://github.com/fellwork/lint/issues"
+  },
   "license": "MIT",
+  "author": "Fellwork <shane@fellwork.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fellwork/lint.git",
@@ -11,7 +33,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["presets", "extras"],
+  "files": [
+    "presets",
+    "extras",
+    "README.md",
+    "LICENSE"
+  ],
   "exports": {
     "./base": "./presets/base.json",
     "./lib": "./presets/lib.json",
