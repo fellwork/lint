@@ -22,12 +22,12 @@ function run(cmd: string, args: string[]) {
   }
 }
 
-// bumpp v11 uses --release <type> instead of positional arg
-// --commit, --tag, --push are all booleans (push defaults true)
+// bumpp v11: --release <type> (not positional). -y skips the confirmation prompt
+// (required in CI; without it bumpp hangs on stdin). commit/tag/push default true.
 if (isCanary) {
-  run('bunx', ['bumpp', '--preid', 'canary', '--release', 'prerelease', '--commit', '--tag', '--push'])
+  run('bunx', ['bumpp', '-y', '--preid', 'canary', '--release', 'prerelease'])
   run('bun', ['publish', '--tag', 'canary'])
 } else {
-  run('bunx', ['bumpp', '--release', bumpLevel, '--commit', '--tag', '--push'])
+  run('bunx', ['bumpp', '-y', '--release', bumpLevel])
   run('bun', ['publish'])
 }

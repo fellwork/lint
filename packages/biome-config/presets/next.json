@@ -62,22 +62,5 @@
         "noDuplicateJsxProps": "error"
       }
     }
-  },
-  "overrides": [
-    {
-      "includes": [
-        "**/app/**/page.tsx",
-        "**/app/**/layout.tsx",
-        "**/pages/**/*.tsx",
-        "**/pages/**/*.ts"
-      ],
-      "linter": {
-        "rules": {
-          "style": {
-            "noDefaultExport": "off"
-          }
-        }
-      }
-    }
-  ]
+  }
 }
