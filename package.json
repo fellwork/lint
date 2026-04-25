@@ -1,0 +1,13 @@
+{
+  "name": "fellwork-lint",
+  "private": true,
+  "type": "module",
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "ci": "moon run :ci",
+    "release": "moon run :release"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  }
+}
