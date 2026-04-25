@@ -14,18 +14,19 @@
   },
   "files": ["presets", "extras"],
   "exports": {
-    "./base":  "./presets/base.json",
-    "./lib":   "./presets/lib.json",
-    "./node":  "./presets/node.json",
+    "./base": "./presets/base.json",
+    "./lib": "./presets/lib.json",
+    "./node": "./presets/node.json",
     "./react": "./presets/react.json",
-    "./vue":   "./presets/vue.json",
-    "./next":  "./presets/next.json",
-    "./nuxt":  "./presets/nuxt.json"
+    "./vue": "./presets/vue.json",
+    "./next": "./presets/next.json",
+    "./nuxt": "./presets/nuxt.json"
   },
   "peerDependencies": {
     "@biomejs/biome": ">=2.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.13"
+    "@biomejs/biome": "2.4.13",
+    "bumpp": "^11.0.1"
   }
 }
