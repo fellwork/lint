@@ -1,0 +1,7 @@
+lint/suspicious/noExplicitAny
+lint/style/useConst
+lint/suspicious/noDoubleEquals
+lint/suspicious/noDebugger
+lint/correctness/noUnusedVariables
+lint/correctness/noConstantCondition
+lint/suspicious/noConsoleLog
