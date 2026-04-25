@@ -2,6 +2,8 @@
 
 Shared Biome configurations for Fellwork projects.
 
+> **Status:** v0.1.0 — initial release.
+
 ## Install
 
 ```bash
